@@ -1,4 +1,4 @@
 node_modules
 playwright-report
 test-results
-.\tests\home.spec.js
+tests/home.spec.js
