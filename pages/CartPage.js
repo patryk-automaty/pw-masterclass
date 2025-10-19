@@ -6,6 +6,9 @@ exports.CartPage = class CartPage {
         this.continueButton = page.getByRole('link', { name: /continue/i});
         this.pageTitle = page.locator('.maintext');
         this.emptyCartMessage = page.locator('div.contentpanel');
+
+        // Locators for cart with added products
+        this.cartRows = page.locator('table tr')
     }
 
     get pageTitleText() {

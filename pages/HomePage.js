@@ -13,6 +13,9 @@ exports.HomePage = class HomePage {
         this.cartDropdownMenu = page.locator("ul.dropdown-menu.topcartopen");
         this.cartFromDropdown = this.cartDropdownMenu.locator("a[title='View Cart'], a:has-text('View Cart')");
         this.checkoutFromDropdown = this.cartDropdownMenu.locator("a[title='Checkout'], a:has-text('Checkout')");
+
+        // Locators for products
+        this.addToCartButtons = page.locator('a.productcart, a:has(i.fa-cart-plus), button:has(i.fa-cart-plus)')
     }
 
     // Opens the main page
@@ -44,9 +47,9 @@ exports.HomePage = class HomePage {
     async gotoCartFromDropdown() {
         // Some themes open the cart only on click
         await this.cartDropdown.click();
-        await this.cartDropdownMenu.waitFor({ state: 'visible' });
-        await this.cartFromDropdown.first().waitFor({ state: 'visible' });
-        await this.cartFromDropdown.first().click();
+        //await this.cartDropdownMenu.waitFor({ state: 'visible' });
+        //await this.cartFromDropdown.first().waitFor({ state: 'visible' });
+        //await this.cartFromDropdown.first().click();
     }
 
     // Go to checkout page from  dropdown
@@ -56,5 +59,14 @@ exports.HomePage = class HomePage {
         await this.checkoutFromDropdown.first().waitFor({ state: 'visible' });
         await this.checkoutFromDropdown.first().click();
     }
+
+    // Add random product to cart from main page
+    async addRadomProductToCart() {
+        const count = await this.addToCartButtons.count();
+        const index = Math.floor(Math.random() * count);
+        const picked = this.addToCartButtons.nth(index);
+        await picked.click();
+    }
+
 
 };
