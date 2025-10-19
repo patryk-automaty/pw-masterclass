@@ -11,8 +11,9 @@ exports.HomePage = class HomePage {
         // Locators for cart dropdown
         this.cartDropdown = page.locator(".dropdown-toggle[href*='cart']");
         this.cartDropdownMenu = page.locator("ul.dropdown-menu.topcartopen");
-        this.cartFromDropdown = page.getByRole('title', { name: 'View Cart' });
-        this.checkoutFromDropdown = page.getByRole('title', { name: 'Checkout' });
+        // Use robust selectors: match by title or visible text
+        this.cartFromDropdown = this.cartDropdownMenu.locator("a[title='View Cart'], a:has-text('View Cart')");
+        this.checkoutFromDropdown = this.cartDropdownMenu.locator("a[title='Checkout'], a:has-text('Checkout')");
     }
 
     // Opens the main page
@@ -42,16 +43,19 @@ exports.HomePage = class HomePage {
 
     // Go to cart page from  dropdown
     async gotoCartFromDropdown() {
-        await this.cartDropdown.hover();
-        await this.cartDropdownMenu.waitFor({ state: 'visible' })
-        await this.cartFromDropdown.click();
+        // Some themes open the cart only on click
+        await this.cartDropdown.click();
+        await this.cartDropdownMenu.waitFor({ state: 'visible' });
+        await this.cartFromDropdown.first().waitFor({ state: 'visible' });
+        await this.cartFromDropdown.first().click();
     }
 
     // Go to checkout page from  dropdown
     async gotoCheckoutFromDropdown() {
-        await this.cartDropdown.hover();
-        await this.cartDropdownMenu.waitFor({ state: 'visible' })
-        await this.checkoutFromDropdown.click();
+        await this.cartDropdown.click();
+        await this.cartDropdownMenu.waitFor({ state: 'visible' });
+        await this.checkoutFromDropdown.first().waitFor({ state: 'visible' });
+        await this.checkoutFromDropdown.first().click();
     }
 
 };

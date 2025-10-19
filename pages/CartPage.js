@@ -1,14 +1,20 @@
-exports.HomePage = class HomePage {
+exports.CartPage = class CartPage {
     constructor(page) {
         this.page = page;
 
         // Locators for empty cart page
-        this.cartPageTitle = page.locator('.maintext')
-        this.emptyCartMessage = page.locator('div.contentpanel')
         this.continueButton = page.getByRole('link', { name: /continue/i})
     }
 
-    async getPageTitle() {
-        
+    get pageTitle() {
+        return this.page.locator('.maintext');
+    }
+
+    get emptyCartMessage() {
+        return this.page.locator('div.contentpanel');
+    }
+
+    async continueShopping() {
+        await this.continueButton.click();
     }
 }
