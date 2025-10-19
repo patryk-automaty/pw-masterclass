@@ -3,15 +3,17 @@ exports.CartPage = class CartPage {
         this.page = page;
 
         // Locators for empty cart page
-        this.continueButton = page.getByRole('link', { name: /continue/i})
+        this.continueButton = page.getByRole('link', { name: /continue/i});
+        this.pageTitle = page.locator('.maintext');
+        this.emptyCartMessage = page.locator('div.contentpanel');
     }
 
-    get pageTitle() {
-        return this.page.locator('.maintext');
+    get pageTitleText() {
+        return this.pageTitle;
     }
 
-    get emptyCartMessage() {
-        return this.page.locator('div.contentpanel');
+    get emptyCartMessageText() {
+        return this.emptyCartMessage;
     }
 
     async continueShopping() {

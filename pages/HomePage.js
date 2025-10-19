@@ -11,7 +11,6 @@ exports.HomePage = class HomePage {
         // Locators for cart dropdown
         this.cartDropdown = page.locator(".dropdown-toggle[href*='cart']");
         this.cartDropdownMenu = page.locator("ul.dropdown-menu.topcartopen");
-        // Use robust selectors: match by title or visible text
         this.cartFromDropdown = this.cartDropdownMenu.locator("a[title='View Cart'], a:has-text('View Cart')");
         this.checkoutFromDropdown = this.cartDropdownMenu.locator("a[title='Checkout'], a:has-text('Checkout')");
     }
