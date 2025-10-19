@@ -7,6 +7,7 @@ exports.HomePage = class HomePage {
         // Locators for currency dropdown
         this.currencyHover = page.locator("a.dropdown-toggle:not([href])");
         this.currencyMenu = page.locator('ul.dropdown-menu.currency');
+        
 
         // Locators for cart dropdown
         this.cartDropdown = page.locator(".dropdown-toggle[href*='cart']");

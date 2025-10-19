@@ -25,7 +25,7 @@ test('Change currency to GBP', async ({page}) => {
     const home = new HomePage(page);
 
     await home.goto();
-    await home.changeCurrency('GPB');
+    await home.changeCurrency('GBP');
 
     const prices = page.locator('.price');
     await expect(prices.first()).toContainText('£');
