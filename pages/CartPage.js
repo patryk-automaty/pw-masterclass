@@ -9,6 +9,7 @@ exports.CartPage = class CartPage {
 
         // Locators for cart with added products
         this.cartRows = page.locator('table tr')
+        this.deleteProductButtons = page.locator("a[href*='remove']")
     }
 
     get pageTitleText() {
@@ -21,5 +22,9 @@ exports.CartPage = class CartPage {
 
     async continueShopping() {
         await this.continueButton.click();
+    }
+
+    async deleteProduct() {
+        await this.deleteProductButtons.first().click()
     }
 }
