@@ -46,11 +46,7 @@ exports.HomePage = class HomePage {
 
     // Go to cart page from  dropdown
     async gotoCartFromDropdown() {
-        // Some themes open the cart only on click
         await this.cartDropdown.click();
-        //await this.cartDropdownMenu.waitFor({ state: 'visible' });
-        //await this.cartFromDropdown.first().waitFor({ state: 'visible' });
-        //await this.cartFromDropdown.first().click();
     }
 
     // Go to checkout page from  dropdown
